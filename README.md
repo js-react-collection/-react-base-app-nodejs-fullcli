@@ -22,8 +22,10 @@ Known Issues:
 - install babel (for jsx and compiling)...<br>
 `npm i --save-dev @babel/core` [⇗](https://babeljs.io/docs/en/babel-preset-react)<br>
 `npm i --save-dev @babel/preset-react` [⇗](https://babeljs.io/docs/en/babel-preset-react)<br>
-`npm i --save-dev @babel/preset-env` [⇗](https://github.com/babel/babel/tree/master/packages/babel-preset-env)<br>
-`npm i --save-dev -g babel-cli` [⇗](https://babeljs.io/docs/en/babel-cli)<br>
+`npm i --save-dev @babel/preset-env` [⇗](https://github.com/rollup/rollup-plugin-babel) [⇗](https://github.com/rollup/rollup-plugin-babel)<br>
+<!-- `npm i --save-dev babel-plugin-module-resolver` [⇗](https://github.com/tleunen/babel-plugin-module-resolver/blob/master/DOCS.md)<br> -->
+<!-- `npm i --save-dev rollup-plugin-babel@latest` [⇗](https://babeljs.io/docs/en/babel-cli)<br> -->
+`npm i --save-dev babel-cli` [⇗](https://babeljs.io/docs/en/babel-cli)<br>
 `npm i --save-dev babel-minify` [⇗](https://babeljs.io/docs/en/babel-minify)<br>
 
 - install react...<br>
@@ -35,28 +37,25 @@ Known Issues:
 - in root make .babelrc cofing file:
 	```json
 	{
+		"sourceMaps": false,
+		"comments": false,
 		"presets": [
-
-			["@babel/preset-env",{
-				"useBuiltIns": "usage",
-				"corejs": "3.22",
-				"modules": "auto",
-				"browserslist": "> 0.25%, not dead"
-			}],
-
-			["@babel/preset-react", {
-				"pragma": "e",
-				"pragmaFrag": "f",
-				"throwIfNamespace": false,
-				"runtime": "classic"
-			}]
-			
+			["@babel/preset-env"],
+			["@babel/preset-react"],
 		],
 		"env": {
 			"development": {
 				"presets": [
-					"@babel/preset-env",
-					"@babel/preset-react"
+					["@babel/preset-env",{
+						"loose": false,
+						"modules": false
+					}],
+					["@babel/preset-react", {
+						"pragma": "e",
+						"pragmaFrag": "f",
+						"throwIfNamespace": false,
+						"runtime": "classic"
+					}]
 				]
 			}
 		}
@@ -71,7 +70,7 @@ Known Issues:
     2. make a server dir: `mkdir public`<br>
     3. make first ./public/index.html:<br>
     `echo '<!DOCTYPE html><html lang="en"><head><!--<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script><script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>--><meta charset="UTF-8"><title>REACT</title></head><body><div>SERVER RUN - REACT ERROR</div><script type="module" src="./reactor.js"></script></body></html>' > public/index.html`
-    4. open package.json and change
+    1. open package.json and change
        ```"scripts": {...},``` 
        with:
        ```json
