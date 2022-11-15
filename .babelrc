@@ -19,5 +19,16 @@
 				}]
 			]
 		}
-	}
+	},
+	"plugins": [
+		[ "file-loader", {
+			"name": "[name].[ext]",
+			"extensions": ["png", "jpg", "jpeg", "gif", "svg", "css"],
+			"publicPath": "/public",
+			"outputPath": "/public/reactor/assets",
+			"context": "",
+			"limit": 0
+		  }
+		]
+	]
 }

@@ -5,16 +5,15 @@
 A purist style approach to make a react app from stretch (without creacte-react-app).
 
 Known Issues:
-- file auto build completely absent
 - depencies auto injection completely absent
 
-> build command traspile the code, probably not import enything via node depency!
+> build command traspile the code, probably babel-plugin-file-loader use webpack. However not import enything (included react and react-dom) of node depency.
 
 <br>
 
 ---
 
-<br>
+
 
 - init project...<br>
 `npm init (or npm init -y)`<br>
@@ -23,8 +22,7 @@ Known Issues:
 `npm i --save-dev @babel/core` [⇗](https://babeljs.io/docs/en/babel-preset-react)<br>
 `npm i --save-dev @babel/preset-react` [⇗](https://babeljs.io/docs/en/babel-preset-react)<br>
 `npm i --save-dev @babel/preset-env` [⇗](https://github.com/rollup/rollup-plugin-babel) [⇗](https://github.com/rollup/rollup-plugin-babel)<br>
-<!-- `npm i --save-dev babel-plugin-module-resolver` [⇗](https://github.com/tleunen/babel-plugin-module-resolver/blob/master/DOCS.md)<br> -->
-<!-- `npm i --save-dev rollup-plugin-babel@latest` [⇗](https://babeljs.io/docs/en/babel-cli)<br> -->
+`npm i --save-dev babel-plugin-file-loader` [⇗](https://github.com/sheerun/babel-plugin-file-loader)<br>
 `npm i --save-dev babel-cli` [⇗](https://babeljs.io/docs/en/babel-cli)<br>
 `npm i --save-dev babel-minify` [⇗](https://babeljs.io/docs/en/babel-minify)<br>
 
@@ -41,14 +39,13 @@ Known Issues:
 		"comments": false,
 		"presets": [
 			["@babel/preset-env"],
-			["@babel/preset-react"],
+			["@babel/preset-react"]
 		],
 		"env": {
 			"development": {
 				"presets": [
 					["@babel/preset-env",{
-						"loose": false,
-						"modules": false
+						"modules": false //"umd" (retrocompatibility)
 					}],
 					["@babel/preset-react", {
 						"pragma": "e",
@@ -58,7 +55,18 @@ Known Issues:
 					}]
 				]
 			}
-		}
+		},
+		"plugins": [
+			[ "file-loader", {
+				"name": "[name].[ext]",
+				"extensions": ["png", "jpg", "jpeg", "gif", "svg", "css"],
+				"publicPath": "/public",
+				"outputPath": "/public/reactor/assets",
+				"context": "",
+				"limit": 0
+			}
+			]
+		]
 	}
 	```
 
@@ -69,8 +77,9 @@ Known Issues:
     1. `npm install http-server`
     2. make a server dir: `mkdir public`<br>
     3. make first ./public/index.html:<br>
-    `echo '<!DOCTYPE html><html lang="en"><head><!--<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script><script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>--><meta charset="UTF-8"><title>REACT</title></head><body><div>SERVER RUN - REACT ERROR</div><script type="module" src="./reactor.js"></script></body></html>' > public/index.html`
-    1. open package.json and change
+    `echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>REACT</title></head><body><div>SERVER RUN - REACT ERROR</div></body></html>' > public/index.html`
+	4. inside html put `<script type="module" src="./reactor/index.js"></script>` for your first load
+    5. open package.json and change
        ```"scripts": {...},``` 
        with:
        ```json
@@ -82,7 +91,7 @@ Known Issues:
 				"minify": "minify ./public/ -d ./public/
 		},
         ```
-    5. test server with: `npm run start`<br><br>
+    6. test server with: `npm run start`<br><br>
 
 
   - if you use express:<br><br>

@@ -7,6 +7,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
+import Test from './comp'
+
+
 //make app root
 const root = ReactDOM.createRoot(document.getElementsByTagName('div')[0])
 
@@ -14,5 +17,6 @@ const root = ReactDOM.createRoot(document.getElementsByTagName('div')[0])
 root.render(
 	<div>
 		<h1>HELLO FROM REACT...</h1>
+		<Test />
 	</div>
 )
