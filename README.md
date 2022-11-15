@@ -25,9 +25,16 @@ Known Issues:
 `npm i --save-dev babel-plugin-file-loader` [⇗](https://github.com/sheerun/babel-plugin-file-loader)<br>
 `npm i --save-dev babel-cli` [⇗](https://babeljs.io/docs/en/babel-cli)<br>
 `npm i --save-dev babel-minify` [⇗](https://babeljs.io/docs/en/babel-minify)<br>
+...if you need update babel: `npx babel-upgrade --write`<br>
+
 
 - install react...<br>
-`npm i --save --local react react-dom` [⇗](https://www.taniarascia.com/getting-started-with-react/)<br>
+	`npm i --save react react-dom` [⇗](https://www.taniarascia.com/getting-started-with-react/)<br>
+
+	other res: <br>
+	[react.production.min.js](https://unpkg.com/react@18/umd/react.production.min.js) <br>
+	[react-dom.production.min.js](https://unpkg.com/react-dom@18/umd/react-dom.production.min.js) <br>
+
 
 - now fix all fix...<br>
 `npm audit fix --force`
@@ -78,8 +85,8 @@ Known Issues:
     2. make a server dir: `mkdir public`<br>
     3. make first ./public/index.html:<br>
     `echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>REACT</title></head><body><div>SERVER RUN - REACT ERROR</div></body></html>' > public/index.html`
-	4. inside html put `<script type="module" src="./reactor/index.js"></script>` for your first load
-    5. open package.json and change
+	1. inside html put `<script type="module" src="./reactor/index.js"></script>` for your first load
+    1. open package.json and change
        ```"scripts": {...},``` 
        with:
        ```json

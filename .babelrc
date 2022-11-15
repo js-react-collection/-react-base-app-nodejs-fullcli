@@ -28,7 +28,6 @@
 			"outputPath": "/public/reactor/assets",
 			"context": "",
 			"limit": 0
-		  }
-		]
+		}]
 	]
 }

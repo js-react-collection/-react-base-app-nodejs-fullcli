@@ -1,11 +1,8 @@
 //get images
-import acss from './assets/test.css'
-
-//get images
-import imglogo from './assets/logo.jpg'
+import imglogo from '../assets/logo.jpg'
 
 //...
-export default function test () {
+export default function Test () {
 
     return (
         <div>
