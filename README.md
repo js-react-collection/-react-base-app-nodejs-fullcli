@@ -75,10 +75,11 @@ Known Issues:
        with:
        ```json
 		"scripts": {
-			"start": "start http://localhost:8080/ && npm run server",
-			"server": "http-server -a localhost -p 8080 -c-1",
-			"build": "babel ./src/index.js --out-file ./public/reactor.js --source-maps inline && npm run minify",
-			"minify": "minify ./public/reactor.js --out-file ./public/reactor.js"
+			    "start": "start http://localhost:8080/ && npm run server",
+				"server": "http-server -a localhost -p 8080 -c-1",
+				"build": "babel ./src/ -d ./public/reactor/",
+				"build-compact": "babel ./src/ -d ./public/reactor/ && rollup && npm run minify",
+				"minify": "minify ./public/ -d ./public/
 		},
         ```
     5. test server with: `npm run start`<br><br>
